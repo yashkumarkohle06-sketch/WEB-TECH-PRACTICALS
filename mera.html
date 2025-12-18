@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+
+    #b1{
+        background-color: lightblue;
+        font-size: 20px;
+        margin: 10px;
+        padding: 5px;
+    }
+    #b2{
+        background-color: lightgreen;
+        font-size: 20px;
+        margin: 10px;
+        padding: 5px;
+    }
+    #b3{
+        background-color: lightpink;
+        font-size: 20px;
+        margin: 10px;
+        padding: 5px;
+    }
+    #b4{
+        background-color: lightgrey;
+        font-size: 20px;
+        margin: 10px;
+        padding: 5px;
+        }
+ 
+   </style>    
+</head>
+<body>
+    
+    num1: <input type="number" id="num1" value="0"><br>
+    num2: <input type="number" id="num2" value="0"><br>
+    <button onclick="add()" id="b1">Add</button><br>
+    <button onclick="subtract()"id="b2">Subtract</button><br>
+    <button onclick="multiply()"id="b3">Multiply</button><br>
+    <button onclick="divide()"id="b4">Divide</button><br>
+    </div>
+<script>
+let num1 = document.getElementById('num1');
+let num2 = document.getElementById('num2');
+document.getElementById('num1').value = 0;
+document.getElementById('num2').value = 0;
+add = () => {
+    alert(`Result: ${(num1.value) + (num2.value)}`);
+}
+subtract = () => {
+    alert(`Result: ${parseFloat(num1.value) - parseFloat(num2.value)}`);
+}
+multiply = () => {
+    alert(`Result: ${parseFloat(num1.value) * parseFloat(num2.value)}`);
+}
+
+divide = () => {
+    alert(`Result: ${parseFloat(num1.value) / parseFloat(num2.value)}`);
+}
+</script>
+
+</html>
