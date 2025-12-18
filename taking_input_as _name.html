@@ -1,0 +1,46 @@
+<!-- Build an HTML form with fields: Name and Email.
+
+Write a validateForm() function and use onsubmit="return validateForm()".
+
+If either field is empty, block submission and show an alert() saying “Fields cannot be empty”.
+
+
+
+
+Use onsubmit event
+
+
+Use alert() for validation -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="myForm" onsubmit="return validateForm()">
+        <h2>Contact Form</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+    <form onsubmit="return validateForm()">
+    <input type="submit" value="Submit">
+    </form>
+    <script>
+function validateForm() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    if (name === "" || email === "") {
+        alert("Fields cannot be empty");
+        return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+}
+    </script>
+
+</body>
+</html>
+
+
