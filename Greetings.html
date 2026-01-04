@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine's Day Card</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: #fae1dd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Background */
+.bg-effects {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+}
+
+.hearts span {
+    position: absolute;
+    color: rgba(214,40,40,0.7);
+    animation: blink 3s infinite;
+}
+
+@keyframes blink {
+    0%,100% {opacity:0; transform:scale(0.8)}
+    50% {opacity:1; transform:scale(1.2)}
+}
+
+/* Balloons */
+.balloons span {
+    position: absolute;
+    bottom: -120px;
+    width: 30px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #ff6f91);
+    animation: floatUp linear forwards;
+}
+
+.balloons span::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: #555;
+    top: 40px;
+    left: 50%;
+}
+
+@keyframes floatUp {
+    to { transform: translateY(-120vh); opacity:0; }
+}
+
+/* Card */
+.container { z-index:10; }
+.valentines { position: relative; cursor:pointer; }
+
+.envelope {
+    width:300px;
+    height:200px;
+    background:#f08080;
+}
+
+.envelope::before {
+    content:"";
+    position:absolute;
+    width:212px;
+    height:212px;
+    background:#f08080;
+    transform:rotate(45deg);
+    top:-105px;
+    left:44px;
+    border-radius:30px 0 0 0;
+}
+
+.card {
+    position:absolute;
+    width:270px;
+    height:170px;
+    background:#eae2b7;
+    top:5px;
+    left:15px;
+    transition:0.6s;
+}
+
+.card::before {
+    content:"";
+    position:absolute;
+    width:240px;
+    height:140px;
+    border:3px dotted #003049;
+    top:12px;
+    left:12px;
+}
+
+.text {
+    font-family:'Brush Script MT', cursive;
+    font-size:24px;
+    color:#003049;
+    text-align:center;
+    margin-top:35px;
+}
+
+.name {
+    margin-top:10px;
+    font-size:22px;
+    text-align:center;
+    color:#003049;
+}
+
+/* Front */
+.front {
+    position:absolute;
+    border-right:180px solid #f4978e;
+    border-top:95px solid transparent;
+    border-bottom:100px solid transparent;
+    left:120px;
+    top:5px;
+    z-index:10;
+}
+
+.front::before {
+    content:"";
+    position:absolute;
+    border-left:300px solid #f8ad9d;
+    border-top:195px solid transparent;
+    left:-120px;
+    top:-95px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-effects">
+    <div class="hearts"></div>
+    <div class="balloons"></div>
+</div>
+
+<div class="container">
+    <div class="valentines" id="card">
+        <div class="envelope"></div>
+        <div class="front"></div>
+        <div class="card" id="cardInner">
+            <div class="text" id="message"></div>
+            <div class="name" id="name"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+/* Floating hearts */
+for(let i=0;i<40;i++){
+  let h=document.createElement("span");
+  h.innerHTML="❤";
+  h.style.left=Math.random()*100+"vw";
+  h.style.top=Math.random()*100+"vh";
+  h.style.fontSize=Math.random()*20+10+"px";
+  document.querySelector(".hearts").appendChild(h);
+}
+
+let opened = false;
+
+document.getElementById("card").addEventListener("click",()=>{
+ if(opened) return;
+ opened = true;
+
+ // Ask user for content
+ let msg = prompt("Enter your message (use line breaks with /):","");
+ let name = prompt("Enter name (optional):","");
+
+ if(msg){
+   document.getElementById("message").innerHTML = msg.split("/").join("<br>");
+ }
+ if(name){
+   document.getElementById("name").innerText = name;
+ }
+
+ document.getElementById("cardInner").style.top="-90px";
+
+ for(let i=0;i<12;i++){
+   let b=document.createElement("span");
+   b.style.left=Math.random()*100+"vw";
+   b.style.animationDuration=Math.random()*4+6+"s";
+   document.querySelector(".balloons").appendChild(b);
+   setTimeout(()=>b.remove(),8000);
+ }
+});
+</script>
+
+</body>
+</html>
